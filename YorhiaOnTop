@@ -1124,7 +1124,7 @@ local Misc = {
 	JitterAngle = math.random(30, 90),
 	SpinAngle = 60,
 	Spin = false,
-	AutoEat = false,
+	Antifling = false,
 	SpinVelocity = -250,
 	SpinAngle = 555,
 	Slingshot = false,
@@ -1750,46 +1750,8 @@ end
 		getgenv().Silent.Part = "LowerTorso"
 		wait()
 	end
-	if Misc.AutoEat then
-		if game.Players.LocalPlayer.Character.Humanoid.Health < 45 then
-			local Current_Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-
-			if
-				game.Players.LocalPlayer.Character:FindFirstChild("[Chicken]") == nil or
-				game.Players.LocalPlayer.Backpack:FindFirstChild("[Chicken]") == nil
-			then
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
-					game.Workspace.Ignored.Shop["[Chicken] - $7"].Head.CFrame
-				wait(0.5)
-				fireclickdetector(game.Workspace.Ignored.Shop["[Chicken] - $7"].ClickDetector)
-			end
-			pcall(
-				function()
-					game.Players.LocalPlayer.Character.Humanoid:EquipTool(
-						game.Players.LocalPlayer.Backpack["[Chicken]"]
-					)
-				end
-			)
-			pcall(
-				function()
-					game.Players.LocalPlayer.Character["[Chicken]"]:Activate()
-					wait(0.1)
-					game.Players.LocalPlayer.Character["[Chicken]"]:Deactivate()
-					wait(0.1)
-					game.Players.LocalPlayer.Character["[Chicken]"]:Activate()
-					wait(0.1)
-					game.Players.LocalPlayer.Character["[Chicken]"]:Deactivate()
-					wait(0.1)
-					game.Players.LocalPlayer.Character["[Chicken]"]:Activate()
-					wait(0.1)
-					game.Players.LocalPlayer.Character["[Chicken]"]:Deactivate()
-					wait(0.1)
-					game.Players.LocalPlayer.Character["[Chicken]"]:Activate()
-					wait(0.1)
-					game.Players.LocalPlayer.Character["[Chicken]"]:Deactivate()
-				end
-			)
-		end
+	if Misc.Antifling then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
 	end
 
 	Tracer.Visible = _G.TracerVisible
@@ -2816,10 +2778,10 @@ Chr:Toggle {
 }
 
 Chr:Toggle {
-	Name = "Auto Eat",
-	Flag = "AutoEatToggle",
+	Name = "Antifling",
+	Flag = "AntiflingToggle",
 	callback = function(e)
-		Misc.AutoEat = e
+		Misc.Antifling = e
 	end
 }
 -- \\
