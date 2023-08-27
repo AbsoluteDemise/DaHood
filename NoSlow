@@ -1,0 +1,19 @@
+local function NOSLOW()
+local backup
+backup = hookfunction(getrawmetatable(game).__newindex, newcclosure(function(self, key, value)
+if key == "WalkSpeed" and value < 16 then
+value = 16
+end
+return backup(self, key, value)
+end))
+end
+
+_G.AntiSlow = true
+
+while task.wait(1) do
+if _G.AntiSlow == true do
+pcall(function()
+if game.Players.LocalPlayer.Character:FindFirstChild("FULLY_LOADED_CHAR") then
+NOSLOW()
+end)
+end
