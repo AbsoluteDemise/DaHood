@@ -1,0 +1,21 @@
+while getgenv().AntiFling == true and task.wait() do
+pcall(function()
+    for _,x in next, game:GetService("Players"):GetPlayers() do
+        if x and x ~= game:GetService("Players").LocalPlayer and x.Character then
+            pcall(function()
+                for _,v in next, x.Character:GetChildren() do
+                    if v:IsA("BasePart") and v.CanCollide then
+                        v.CanCollide = false
+                        if v.Name == "Torso" then
+                            v.Massless = true
+                        end
+                        v.Velocity = Vector3.new()
+                        v.RotVelocity = Vector3.new()
+                    end
+                end
+            end)
+        end
+    end
+    game:GetService("RunService").Stepped:wait()
+end)
+end
