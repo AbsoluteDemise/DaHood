@@ -13,7 +13,7 @@ while task.wait() do
         if getgenv().Antistomp then
             pcall(function()
                 local savedVelo = gVelo()
-                gRoot().Velocity = Vector3.new(1000000, 1000000, 1000000)
+                gRoot().Velocity = Vector3.new(10000, 10000, 10000)
                 game:FindService'RunService'.RenderStepped:wait()
                 gRoot().Velocity = savedVelo
             end)
