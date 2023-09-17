@@ -1,0 +1,21 @@
+while task.wait() and _G.AutoLift == true do
+pcall(function()
+		wait()
+		if not game.Players.LocalPlayer.Character:FindFirstChild("[HeavyWeights]") then
+			wait()
+			local k = game.Workspace.Ignored.Shop["[HeavyWeights] - $250"]
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = k.Head.CFrame + Vector3.new(0, 3, 0)
+			if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - k.Head.Position).Magnitude <= 50 then
+				wait(.2)
+				fireclickdetector(k:FindFirstChild("ClickDetector"), 4)
+			end
+		end
+		if not game.Players.LocalPlayer.Character:FindFirstChild("[HeavyWeights]") then
+			tool = game.Players.LocalPlayer.Backpack:WaitForChild("[HeavyWeights]")
+			tool.Parent = game.Players.LocalPlayer.Character
+		end
+		game:GetService("VirtualUser"):ClickButton1(Vector2.new())
+		local d = Vector3.new(-1007.9, -51.15, -1014.340)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(d)
+end)
+end
